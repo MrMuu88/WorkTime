@@ -2,6 +2,7 @@
 using log4net;
 using System.Windows;
 using System.Windows.Forms;
+using WorkTime.Components;
 using WorkTime.Views;
 
 namespace WorkTime
@@ -14,7 +15,6 @@ namespace WorkTime
 		private static ILog log = LogManager.GetLogger(nameof(App));
 
 		public static IContainer IoCContainer { get; private set; }
-		public NotifyIcon NotifyIcon { get; private set; }
 
 		protected override void OnStartup(StartupEventArgs e)
 		{
@@ -26,12 +26,11 @@ namespace WorkTime
 			using (var scope = App.IoCContainer.BeginLifetimeScope())
 			{
 				log.Info("Main Scope created");
+				scope.Resolve<NotifyIconComponent>().Enable();
 				scope.Resolve<MainWindow>().Show();
 			}
 
-			NotifyIcon = new NotifyIcon();
-			NotifyIcon.Icon = WorkTime.Properties.Resources.working_time_icon;
-			NotifyIcon.Visible = true;
+			
 		}
 
 		protected override void OnExit(ExitEventArgs e)

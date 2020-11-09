@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using WorkTime.Components;
 using WorkTime.Views;
 
 namespace WorkTime
@@ -9,6 +10,7 @@ namespace WorkTime
 			var builder = new ContainerBuilder();
 
 			builder.RegisterType<MainWindow>().AsSelf().InstancePerDependency();
+			builder.RegisterType<NotifyIconComponent>().AsSelf().SingleInstance();
 
 			return builder.Build();
 		}
