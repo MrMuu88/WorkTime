@@ -3,6 +3,7 @@ using log4net;
 using System;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Forms;
 using WorkTime.Views;
 
 namespace WorkTime
@@ -10,11 +11,12 @@ namespace WorkTime
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
-	public partial class App : Application
+	public partial class App : System.Windows.Application
 	{
 		private static ILog log = LogManager.GetLogger(nameof(App));
 
 		public static IContainer IoCContainer { get; private set; }
+		public NotifyIcon NotifyIcon { get; private set; }
 
 		protected override void OnStartup(StartupEventArgs e)
 		{
@@ -28,6 +30,9 @@ namespace WorkTime
 				log.Info("Main Scope created");
 				scope.Resolve<MainWindow>().Show();
 			}
+
+			NotifyIcon = new NotifyIcon();
+			NotifyIcon.Visible = true;
 		}
 
 		protected override void OnExit(ExitEventArgs e)
