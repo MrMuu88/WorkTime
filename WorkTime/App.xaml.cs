@@ -1,7 +1,5 @@
 ﻿using Autofac;
 using log4net;
-using System;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 using WorkTime.Views;
@@ -32,6 +30,7 @@ namespace WorkTime
 			}
 
 			NotifyIcon = new NotifyIcon();
+			NotifyIcon.Icon = WorkTime.Properties.Resources.working_time_icon;
 			NotifyIcon.Visible = true;
 		}
 
