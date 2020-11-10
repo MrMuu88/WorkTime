@@ -4,8 +4,8 @@ namespace WorkTime.Interfaces
 {
 	public interface IMessenger
 	{
-		void Publish<T>(T message) where T : class;
-		void Subscribe<T>(Action<dynamic> action) where T : class;
+		void Publish<TMessage>(TMessage message) where TMessage : class;
+		void Subscribe<TMessage>(Action<TMessage> action) where TMessage : class;
 		void UnSubscribe<TMessage>(object subscriber) where TMessage : class;
 	}
 }

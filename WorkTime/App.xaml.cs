@@ -1,9 +1,11 @@
 ﻿using Autofac;
 using log4net;
+using System.Diagnostics;
 using System.Windows;
 using WorkTime.Components;
 using WorkTime.Interfaces;
 using WorkTime.Messages;
+using WorkTime.Views;
 
 namespace WorkTime
 {
@@ -26,9 +28,9 @@ namespace WorkTime
 
 			Messenger = IoCContainer.Resolve<IMessenger>();
 
-			Messenger.Subscribe<ReportPageRequestMessage>((m)=>log.Info("Report page requested"));
-			Messenger.Subscribe<OptionsPageRequestMessage>((m)=> log.Info("Options page requested"));
-			Messenger.Subscribe<SwitchMessage>((m)=> log.Info("switch requested"));
+			Messenger.Subscribe<ReportPageRequestMessage>(OnReportRequest);
+			Messenger.Subscribe<OptionsPageRequestMessage>(OnOptionsRequest);
+			Messenger.Subscribe<SwitchMessage>(OnSwitchRequest);
 			Messenger.Subscribe<ExitRequestMessage>((m)=> Current.Shutdown());
 
 			IoCContainer.Resolve<NotifyIconComponent>().Enable();
@@ -39,6 +41,22 @@ namespace WorkTime
 			log.Info("Aplication exited");
 			base.OnExit(e);
 		}
+
+		public void OnReportRequest(ReportPageRequestMessage message) {
+			log.Info("Report page requested");
+			IoCContainer.Resolve<MainWindow>().Show();
+		}
+
+		public void OnOptionsRequest(OptionsPageRequestMessage message)
+		{
+			log.Info("Options page requested");
+		}
+
+		public void OnSwitchRequest(SwitchMessage message) {
+			log.Info("switch requested");
+		}
+
+
 	}
 
 	

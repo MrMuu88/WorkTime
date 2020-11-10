@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WorkTime.Components;
-using WorkTime.Interfaces;
 
 namespace WorkTime.Tests
 {
@@ -8,6 +7,8 @@ namespace WorkTime.Tests
 	public class MessengerComponentTest
 	{
 		public static MessengerComponent Messenger { get; private set; }
+		public bool MessageRecieved { get; set;}
+		public int ValueRecieved { get; set; }
 
 		[ClassInitialize]
 		public static void InitializeClass(TestContext context)
@@ -15,55 +16,39 @@ namespace WorkTime.Tests
 			Messenger = new MessengerComponent();
 		}
 
-
-		[TestInitialize]
-		public void InitializeTest()
-		{
-			MessageReciever.MessageRecieved = false;
-		}
-
 		[TestMethod]
-		public void MessageRecievedTest()
+		public void SubscribeTest()
 		{
-			var reciever = new MessageReciever(Messenger);
+			Messenger.Subscribe<TestMessage>((m)=> ValueRecieved = m.Value);
 
 			Messenger.Publish(new TestMessage(2));
 
-			Assert.IsTrue(reciever.GotValue == 2);
+			Assert.IsTrue(ValueRecieved == 2);
 		}
 
 		[TestMethod]
-		public void MessageRecieverRemovedTest()
+		public void UnsubscribeTest()
 		{
-			var reciever = new MessageReciever(Messenger); // subscribes
-			Messenger.UnSubscribe<TestMessage>(reciever); 
-
+			Messenger.Subscribe<TestMessage>(Messagerecieved);
+			Messenger.UnSubscribe<TestMessage>(this);
 			Messenger.Publish(new TestMessage(2));
-			Assert.IsTrue(MessageReciever.MessageRecieved == false);
-		}
-	}
+			Assert.IsTrue(!MessageRecieved);
 
-
-	public class MessageReciever {
-		public IMessenger Messenger { get; }
-		public static bool MessageRecieved {get;set;} = false;
-		public int GotValue { get; set; }
-
-		public MessageReciever(IMessenger messenger)
-		{
-			Messenger = messenger;
-			Messenger.Subscribe<TestMessage>((m) => { MessageRecieved = true; GotValue = m.Property; });
+			void Messagerecieved(TestMessage message)
+			{
+				MessageRecieved = true;
+			}
 		}
 
 	}
 
-	public class TestMessage {
+	public class TestMessage{
 
-		public int Property { get; set; }
+		public int Value { get; set; }
 
-		public TestMessage(int property)
+		public TestMessage(int value)
 		{
-			Property = property;
+			Value = value;
 		}
 
 	}
