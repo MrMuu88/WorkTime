@@ -1,6 +1,6 @@
 ﻿namespace WorkTime.Messages
 {
-	class OptionsPageRequestMessage
+	public class OptionsPageRequestMessage
 	{
 	}
 }

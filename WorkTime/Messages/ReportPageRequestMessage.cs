@@ -1,6 +1,6 @@
 ﻿namespace WorkTime.Messages
 {
-	class ReportPageRequestMessage
+	public class ReportPageRequestMessage
 	{
 	}
 }

@@ -1,6 +1,6 @@
 ﻿namespace WorkTime.Messages
 {
-	class ExitRequestMessage
+	public class ExitRequestMessage
 	{
 	}
 }
