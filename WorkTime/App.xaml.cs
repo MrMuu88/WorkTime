@@ -1,8 +1,9 @@
 ﻿using Autofac;
 using log4net;
 using System.Windows;
-using System.Windows.Forms;
 using WorkTime.Components;
+using WorkTime.Interfaces;
+using WorkTime.Messages;
 using WorkTime.Views;
 
 namespace WorkTime
@@ -10,11 +11,12 @@ namespace WorkTime
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
-	public partial class App : System.Windows.Application
+	public partial class App : Application
 	{
 		private static ILog log = LogManager.GetLogger(nameof(App));
 
 		public static IContainer IoCContainer { get; private set; }
+		public IMessenger Messenger { get; private set; }
 
 		protected override void OnStartup(StartupEventArgs e)
 		{
@@ -23,14 +25,14 @@ namespace WorkTime
 
 			IoCContainer = WorkTime.Startup.ConfigureServices();
 
-			using (var scope = App.IoCContainer.BeginLifetimeScope())
-			{
-				log.Info("Main Scope created");
-				scope.Resolve<NotifyIconComponent>().Enable();
-				scope.Resolve<MainWindow>().Show();
-			}
+			Messenger = IoCContainer.Resolve<IMessenger>();
 
-			
+			Messenger.Subscribe<ReportPageRequestMessage>(OnReportRequest);
+			Messenger.Subscribe<OptionsPageRequestMessage>(OnOptionsRequest);
+			Messenger.Subscribe<SwitchMessage>(OnSwitchRequest);
+			Messenger.Subscribe<ExitRequestMessage>((m)=> Current.Shutdown());
+
+			IoCContainer.Resolve<NotifyIconComponent>().Enable();
 		}
 
 		protected override void OnExit(ExitEventArgs e)
@@ -38,6 +40,23 @@ namespace WorkTime
 			log.Info("Aplication exited");
 			base.OnExit(e);
 		}
+
+		public void OnReportRequest(ReportPageRequestMessage message) {
+			log.Info("Report page requested");
+			IoCContainer.Resolve<ReportView>().Show();
+		}
+
+		public void OnOptionsRequest(OptionsPageRequestMessage message)
+		{
+			log.Info("Options page requested");
+			IoCContainer.Resolve<OptionsView>().Show();
+		}
+
+		public void OnSwitchRequest(SwitchMessage message) {
+			log.Info("switch requested");
+		}
+
+
 	}
 
 	
