@@ -44,12 +44,13 @@ namespace WorkTime
 
 		public void OnReportRequest(ReportPageRequestMessage message) {
 			log.Info("Report page requested");
-			IoCContainer.Resolve<MainWindow>().Show();
+			IoCContainer.Resolve<ReportView>().Show();
 		}
 
 		public void OnOptionsRequest(OptionsPageRequestMessage message)
 		{
 			log.Info("Options page requested");
+			IoCContainer.Resolve<OptionsView>().Show();
 		}
 
 		public void OnSwitchRequest(SwitchMessage message) {

@@ -11,8 +11,9 @@ namespace WorkTime
 			var builder = new ContainerBuilder();
 
 			builder.RegisterType<MessengerComponent>().As<IMessenger>().SingleInstance();
-			builder.RegisterType<MainWindow>().AsSelf().InstancePerDependency();
 			builder.RegisterType<NotifyIconComponent>().AsSelf().SingleInstance();
+			builder.RegisterType<ReportView>().AsSelf().InstancePerDependency();
+			builder.RegisterType<OptionsView>().AsSelf().InstancePerDependency();
 
 			return builder.Build();
 		}
