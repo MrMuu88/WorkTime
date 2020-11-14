@@ -29,15 +29,10 @@ namespace WorkTime.Tests
 		[TestMethod]
 		public void UnsubscribeTest()
 		{
-			Messenger.Subscribe<TestMessage>(Messagerecieved);
+			Messenger.Subscribe<TestMessage>((m)=> MessageRecieved =true);
 			Messenger.UnSubscribe<TestMessage>(this);
 			Messenger.Publish(new TestMessage(2));
 			Assert.IsTrue(!MessageRecieved);
-
-			void Messagerecieved(TestMessage message)
-			{
-				MessageRecieved = true;
-			}
 		}
 
 	}

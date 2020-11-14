@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using log4net;
-using System.Diagnostics;
 using System.Windows;
 using WorkTime.Components;
 using WorkTime.Interfaces;
