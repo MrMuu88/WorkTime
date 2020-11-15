@@ -166,6 +166,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Components\TimeTrackingComponent.cs" />
+    <Compile Include="Models\WorkDay.cs" />
     <Compile Include="Views\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
     </Compile>
@@ -223,6 +224,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Configurations\" />
     <Folder Include="Exceptions\" />
     <Folder Include="MaperConfigurations\" />
     <Folder Include="ViewModels\" />
