@@ -21,6 +21,9 @@ namespace WorkTime.Components
 
 		public void Publish<TMessage>(TMessage message) where TMessage : class
 		{
+			if (!SubscriberStore.ContainsKey(typeof(TMessage)))
+				return;
+
 			foreach (var action in SubscriberStore[typeof(TMessage)]) {
 					((Action<TMessage>)action).Invoke(message);
 			}
