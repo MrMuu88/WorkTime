@@ -12,7 +12,6 @@ namespace WorkTime.Components
 		private static readonly Dictionary<string, dynamic> MenuComposition = new Dictionary<string, dynamic> {
 			{ "Show report",new ReportPageRequestMessage() },
 			{ "Options",new OptionsPageRequestMessage() },
-			{ "Disable/enable",new SwitchMessage() },
 			{ "Exit",new ExitRequestMessage() },
 		};
 		private NotifyIcon NotifyIcon { get; set; } = new NotifyIcon() {
@@ -35,7 +34,7 @@ namespace WorkTime.Components
 			NotifyIcon.Visible = false;
 		}
 
-		public ContextMenu ComposeMenu(Dictionary<string,dynamic> composition) {
+		private ContextMenu ComposeMenu(Dictionary<string,dynamic> composition) {
 			var menu = new ContextMenu();
 			foreach (var item in composition)
 			{

@@ -29,7 +29,6 @@ namespace WorkTime
 
 			Messenger.Subscribe<ReportPageRequestMessage>(OnReportRequest);
 			Messenger.Subscribe<OptionsPageRequestMessage>(OnOptionsRequest);
-			Messenger.Subscribe<SwitchMessage>(OnSwitchRequest);
 			Messenger.Subscribe<ExitRequestMessage>((m)=> Current.Shutdown());
 
 			IoCContainer.Resolve<NotifyIconComponent>().Enable();
@@ -51,12 +50,6 @@ namespace WorkTime
 			log.Info("Options page requested");
 			IoCContainer.Resolve<OptionsView>().Show();
 		}
-
-		public void OnSwitchRequest(SwitchMessage message) {
-			log.Info("switch requested");
-		}
-
-
 	}
 
 	
