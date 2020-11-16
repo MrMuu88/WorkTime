@@ -8,7 +8,7 @@ namespace WorkTime.Models
 		public DateTime Started { get; internal set; } = DateTime.Now;
 		public DateTime LastWorked { get; internal set; } = DateTime.Now;
 
-		public List<bool> Minutes { get; internal set; } = new List<bool>();
+		public List<TimeFrame> TimeFrames { get; internal set; } = new List<TimeFrame>() { new TimeFrame(DateTime.Now,default)};
 		
 		public WorkDay(){}
 

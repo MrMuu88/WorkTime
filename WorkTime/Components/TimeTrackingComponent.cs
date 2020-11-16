@@ -1,28 +1,50 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
+using System.Linq;
 using System.Timers;
 using WorkTime.Interfaces;
 using WorkTime.Models;
 
 namespace WorkTime.Components
 {
-	public class TimeTrackingComponent
+	public class TimeTrackingComponent:ITimeTracker
 	{
 		public WorkDay CurrentWorkDay { get; set; }
 		public IMessenger Messenger { get; }
-		public bool IsEnabled { get => timer.Enabled; set => timer.Enabled = value; }
+		public TimeTrackingConfiguration Config { get; }
+		private readonly Timer timer; 
 
-		private readonly Timer timer = new Timer { AutoReset = true, Interval = 60000, Enabled = true };
-
-		public TimeTrackingComponent(IMessenger messenger)
+		public TimeTrackingComponent(IMessenger messenger, IOptions<TimeTrackingConfiguration> options)
 		{
 			Messenger = messenger;
-			timer.Elapsed += (s, e) => OnTimerElapsed(CurrentWorkDay); //a traditional Eventhandler cannot be unit tested
+			Config = options.Value;
+			timer = new Timer { AutoReset = true, Interval = Config.CheckInterval, Enabled = true };
+			timer.Elapsed += (s, e) => OnTimerElapsed(CurrentWorkDay);				//a traditional Eventhandler cannot be unit tested
 		}
 
 		internal void OnTimerElapsed(WorkDay workday){
-			var NotWorkedMinutes = (int)Math.Floor((DateTime.Now - workday.LastWorked).TotalMinutes);
-			workday.Minutes.AddRange(new bool[NotWorkedMinutes]);
-			workday.Minutes.Add(true);
+			var dtnow = DateTime.Now;												//to eliminate ms changes between statements
+			var span = dtnow - workday.LastWorked;
+			var lastframe = workday.TimeFrames.Last();
+
+			if (span.Ticks > TimeSpan.FromMilliseconds(Config.BreakTreshold).Ticks)
+			{
+				//Close the last frame
+				
+				//TODO throw an exception if the lastframe is not Work type
+				lastframe.Span = (workday.LastWorked - lastframe.Started);
+
+				//add a new beak frame
+				workday.TimeFrames.Add(new TimeFrame(workday.LastWorked, span, TimeFrameType.Break));
+
+				//add a new work Frame
+				workday.TimeFrames.Add(new TimeFrame(dtnow, TimeSpan.FromMilliseconds(Config.CheckInterval)));
+			}
+			else {
+				lastframe.Span = lastframe.Span.Add(span);
+			}
+
+			workday.LastWorked = dtnow;
 		}
 
 		public void Start() {

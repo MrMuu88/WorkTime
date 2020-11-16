@@ -165,7 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Components\TimeTrackingConfiguration.cs" />
+    <Compile Include="Interfaces\ITimeTracker.cs" />
     <Compile Include="Components\TimeTrackingComponent.cs" />
+    <Compile Include="Models\TimeFrame.cs" />
     <Compile Include="Models\WorkDay.cs" />
     <Compile Include="Views\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
@@ -185,7 +188,6 @@
     <Compile Include="Messages\ExitRequestMessage.cs" />
     <Compile Include="Messages\OptionsPageRequestMessage.cs" />
     <Compile Include="Messages\ReportPageRequestMessage.cs" />
-    <Compile Include="Messages\SwitchMessage.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Views\ReportView.xaml.cs">
       <DependentUpon>ReportView.xaml</DependentUpon>

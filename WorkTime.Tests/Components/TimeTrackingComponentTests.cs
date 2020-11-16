@@ -1,22 +1,15 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using WorkTime.Models;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.Extensions.Options;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace WorkTime.Components.Tests
 {
 	[TestClass]
 	public class TimeTrackingComponentTests
 	{
-		public static IEnumerable<object[]> OnTimerElapsedTestData
-		{
-			get => new List<object[]> {
-			new object[]{new WorkDay(DateTime.Now,DateTime.Now),1,0,1 },
-			new object[]{ GetaWorkDay(DateTime.Now.AddMinutes(-5), DateTime.Now,5),6,0,6 },
-			new object[]{ GetaWorkDay(DateTime.Now.AddMinutes(-10), DateTime.Now.AddMinutes(-5),5),11,5,6 }
-		};
-		}
 
 		public static MessengerComponent Messanger { get; private set; }
 		public static TimeTrackingComponent TimeTracker { get; private set; }
@@ -25,28 +18,25 @@ namespace WorkTime.Components.Tests
 		public static void InitializeClass(TestContext context)
 		{
 			Messanger = new MessengerComponent();
-			TimeTracker = new TimeTrackingComponent(Messanger);
+			var ttConfig = Options.Create(new TimeTrackingConfiguration { CheckInterval= 1000,BreakTreshold=3000});
+			TimeTracker = new TimeTrackingComponent(Messanger, ttConfig);
+			TimeTracker.Stop();
 		}
 
 		[TestMethod]
-		[DynamicData(nameof(OnTimerElapsedTestData))]
-		public void OnTimerElapsedTest(WorkDay workday, int expLength, int expBreak, int expWork)
+
+		public async Task OnTimerElapsedTest()
 		{
+			var workday = new WorkDay();
+			await Task.Delay(1000);
 			TimeTracker.OnTimerElapsed(workday);
-			Assert.IsTrue(workday.Minutes.Count == expLength,$"Length incorrect, exp:{expLength}, got:{workday.Minutes.Count}");
-			Assert.IsTrue(workday.Minutes.Where(m => !m).Count() == expBreak, $"Break incorrect, exp:{expBreak}, got:{workday.Minutes.Where(m => !m).Count()}");
-			Assert.IsTrue(workday.Minutes.Where(m => m).Count() == expWork, $"Work incorrect, exp:{expWork}, got:{workday.Minutes.Where(m => m).Count()}");
+			await Task.Delay(4000);
+			TimeTracker.OnTimerElapsed(workday);
+			Trace.WriteLine(JsonConvert.SerializeObject(workday, Formatting.Indented));
+			Assert.IsTrue(workday.TimeFrames.Count == 3);
+			Assert.IsTrue(workday.TimeFrames[0].Type == TimeFrameType.Work );
+			Assert.IsTrue(workday.TimeFrames[1].Type == TimeFrameType.Break );
+			Assert.IsTrue(workday.TimeFrames[2].Type == TimeFrameType.Work );
 		}
-
-		private static WorkDay GetaWorkDay(DateTime started, DateTime lastWorked, int minutes=0, int breaks=0)
-		{
-			var wd =  new WorkDay();
-			wd.Started = started;
-			wd.LastWorked = lastWorked;
-			wd.Minutes.AddRange(Enumerable.Repeat(true,minutes));
-			wd.Minutes.AddRange(new bool[breaks]);
-			return wd;
-		}
-
 	}
 }
