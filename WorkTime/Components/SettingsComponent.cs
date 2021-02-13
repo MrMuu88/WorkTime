@@ -1,5 +1,5 @@
 ﻿using WorkTime.Interfaces;
-using WorkTime.Settings;
+using WorkTime.Messages;
 
 namespace WorkTime.Components
 {

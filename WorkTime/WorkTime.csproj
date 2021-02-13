@@ -165,7 +165,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Components\SettingsChangedMessage.cs" />
+    <Compile Include="Messages\SettingsChangedMessage.cs" />
     <Compile Include="Components\SettingsComponent.cs" />
     <Compile Include="Interfaces\ISettingManager.cs" />
     <Compile Include="Interfaces\ITimeTracker.cs" />
@@ -231,7 +231,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
-    <Folder Include="MaperConfigurations\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>

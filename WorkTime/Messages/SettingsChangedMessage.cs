@@ -1,4 +1,4 @@
-﻿namespace WorkTime.Components
+﻿namespace WorkTime.Messages
 {
 	public class SettingsChangedMessage
 	{
