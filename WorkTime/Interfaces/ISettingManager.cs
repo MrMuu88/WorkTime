@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.Options;
-using WorkTime.Components;
-
-namespace WorkTime.Interfaces
+﻿namespace WorkTime.Interfaces
 {
-	public interface ISettingManager<T>
+	public interface ISettingManager
 	{
+		void Reload();
+		void ResetToDefaults();
+		void Save();
 	}
 }

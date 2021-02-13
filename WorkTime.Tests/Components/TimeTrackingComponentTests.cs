@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WorkTime.Models;
-using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Newtonsoft.Json;
@@ -18,8 +17,7 @@ namespace WorkTime.Components.Tests
 		public static void InitializeClass(TestContext context)
 		{
 			Messanger = new MessengerComponent();
-			var ttConfig = Options.Create(new TimeTrackingConfiguration { CheckInterval= 1000,BreakTreshold=3000});
-			TimeTracker = new TimeTrackingComponent(Messanger, ttConfig);
+			TimeTracker = new TimeTrackingComponent(Messanger);
 			TimeTracker.Stop();
 		}
 

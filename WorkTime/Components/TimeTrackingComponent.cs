@@ -11,14 +11,13 @@ namespace WorkTime.Components
 	{
 		public WorkDay CurrentWorkDay { get; set; }
 		public IMessenger Messenger { get; }
-		public TimeTrackingConfiguration Config { get; }
 		private readonly Timer timer; 
 
-		public TimeTrackingComponent(IMessenger messenger, IOptions<TimeTrackingConfiguration> options)
+		public TimeTrackingComponent(IMessenger messenger)
 		{
+			//TODO move settings to a settings handler class, that can send a message for SettingsChanged
 			Messenger = messenger;
-			Config = options.Value;
-			timer = new Timer { AutoReset = true, Interval = Config.CheckInterval, Enabled = true };
+			timer = new Timer { AutoReset = true, Interval = Properties.Settings.Default.TrackingInterval, Enabled = true };
 			timer.Elapsed += (s, e) => OnTimerElapsed(CurrentWorkDay);				//a traditional Eventhandler cannot be unit tested
 		}
 
@@ -27,7 +26,7 @@ namespace WorkTime.Components
 			var span = dtnow - workday.LastWorked;
 			var lastframe = workday.TimeFrames.Last();
 
-			if (span.Ticks > TimeSpan.FromMilliseconds(Config.BreakTreshold).Ticks)
+			if (span.Ticks > TimeSpan.FromMilliseconds(Properties.Settings.Default.BreakTreshold).Ticks)
 			{
 				//Close the last frame
 				
@@ -38,7 +37,7 @@ namespace WorkTime.Components
 				workday.TimeFrames.Add(new TimeFrame(workday.LastWorked, span, TimeFrameType.Break));
 
 				//add a new work Frame
-				workday.TimeFrames.Add(new TimeFrame(dtnow, TimeSpan.FromMilliseconds(Config.CheckInterval)));
+				workday.TimeFrames.Add(new TimeFrame(dtnow, TimeSpan.FromMilliseconds(Properties.Settings.Default.TrackingInterval)));
 			}
 			else {
 				lastframe.Span = lastframe.Span.Add(span);

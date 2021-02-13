@@ -92,7 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\TimeTrackingComponentTests.cs" />
-    <Compile Include="MessengerComponentTest.cs" />
+    <Compile Include="Components\MessengerComponentTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

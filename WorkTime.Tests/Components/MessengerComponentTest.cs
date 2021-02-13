@@ -1,13 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WorkTime.Components;
 
-namespace WorkTime.Tests
+namespace WorkTime.Tests.Components
 {
 	[TestClass]
 	public class MessengerComponentTest
 	{
 		public static MessengerComponent Messenger { get; private set; }
-		public bool MessageRecieved { get; set;}
+		public bool MessageRecieved { get; set; }
 		public int ValueRecieved { get; set; }
 
 		[ClassInitialize]
@@ -19,7 +19,7 @@ namespace WorkTime.Tests
 		[TestMethod]
 		public void SubscribeTest()
 		{
-			Messenger.Subscribe<TestMessage>((m)=> ValueRecieved = m.Value);
+			Messenger.Subscribe<TestMessage>((m) => ValueRecieved = m.Value);
 
 			Messenger.Publish(new TestMessage(2));
 
@@ -29,7 +29,7 @@ namespace WorkTime.Tests
 		[TestMethod]
 		public void UnsubscribeTest()
 		{
-			Messenger.Subscribe<TestMessage>((m)=> MessageRecieved =true);
+			Messenger.Subscribe<TestMessage>((m) => MessageRecieved = true);
 			Messenger.UnSubscribe<TestMessage>(this);
 			Messenger.Publish(new TestMessage(2));
 			Assert.IsTrue(!MessageRecieved);
@@ -37,7 +37,8 @@ namespace WorkTime.Tests
 
 	}
 
-	public class TestMessage{
+	public class TestMessage
+	{
 
 		public int Value { get; set; }
 
