@@ -11,6 +11,7 @@ namespace WorkTime
 			var builder = new ContainerBuilder();
 			builder.RegisterType<MessengerComponent>().As<IMessenger>().SingleInstance();
 			builder.RegisterType<TimeTrackingComponent>().As<ITimeTracker>().SingleInstance();
+			builder.RegisterType<SettingsComponent>().As<ISettingManager>().SingleInstance();
 			builder.RegisterType<NotifyIconComponent>().AsSelf().SingleInstance();
 
 			builder.RegisterType<ReportView>().AsSelf().InstancePerDependency();

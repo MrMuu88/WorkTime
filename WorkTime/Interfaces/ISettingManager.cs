@@ -1,8 +1,12 @@
-﻿namespace WorkTime.Interfaces
+﻿using WorkTime.Settings;
+
+namespace WorkTime.Interfaces
 {
 	public interface ISettingManager
 	{
-		void Reload();
+		AppSettings Settings { get; }
+
+		void Load();
 		void ResetToDefaults();
 		void Save();
 	}
