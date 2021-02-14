@@ -33,7 +33,7 @@ namespace WorkTime.Components
 					Settings = new AppSettings();
 					Save();
 				}
-				Messenger.Publish(new SettingsChangedMessage());
+				Messenger.PublishAsync(new SettingsChangedMessage());
 			}
 			catch
 			{
@@ -57,7 +57,7 @@ namespace WorkTime.Components
 			try
 			{
 				Settings = new AppSettings();
-				Messenger.Publish(new SettingsChangedMessage());
+				Messenger.PublishAsync(new SettingsChangedMessage());
 			}
 			catch
 			{

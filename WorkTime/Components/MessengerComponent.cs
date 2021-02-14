@@ -1,38 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using WorkTime.Interfaces;
-using WorkTime.Messages;
 
 namespace WorkTime.Components
 {
-	public class MessengerComponent:IMessenger
+	public class MessengerComponent : IMessenger
 	{
-		//canot cast Action<T> to Action<BaseMessage> hence a boxing is needed
-		private Dictionary<Type,List<object>> SubscriberStore { get; set; } = new Dictionary<Type,List<object>>();
 
-		public void Subscribe<TMessage>(Action<TMessage> action) where TMessage: class
+		private Dictionary<Type, List<WeakReference>> SubscriberStore { get; } = new Dictionary<Type, List<WeakReference>>();
+
+		public Task PublishAsync<T>(T message) where T : class
 		{
-			if (SubscriberStore.ContainsKey(typeof(TMessage)))
-				SubscriberStore[typeof(TMessage)].Add(action);
-			else
-				SubscriberStore.Add(typeof(TMessage),new List<object>() {action});
+			return Task.Factory.StartNew(async () =>
+			{
+				if (SubscriberStore.TryGetValue(typeof(T), out var subScribers))
+				{
+					var shouldremove = new List<WeakReference>();
+					foreach (WeakReference subscriber in subScribers)
+					{
+						if (subscriber.IsAlive)
+							//the subscriber exists
+							await ((ISubscribe<T>)subscriber.Target).OnMessage(message);
+						else
+							// the subscriber already destroyed
+							shouldremove.Add(subscriber);
+						
+					}
+					shouldremove.ForEach(wr => subScribers.Remove(wr));
+				}
+			});
 		}
 
-		public void Publish<TMessage>(TMessage message) where TMessage : class
+		public void Subscribe<T>(ISubscribe<T> Subscriber) where T : class
 		{
-			if (!SubscriberStore.ContainsKey(typeof(TMessage)))
-				return;
-
-			foreach (var action in SubscriberStore[typeof(TMessage)]) {
-					((Action<TMessage>)action).Invoke(message);
+			if (SubscriberStore.TryGetValue(typeof(T), out var subScribers))
+			{
+				subScribers.Add(new WeakReference(Subscriber));
 			}
-		}
-
-		public void UnSubscribe<TMessage>(object subscriber) where TMessage : class
-		{
-			var shouldRemove = SubscriberStore[typeof(TMessage)].Where(action => ((Action<TMessage>)action).Target == subscriber).ToList();
-			shouldRemove.ForEach(removeItem => SubscriberStore[typeof(TMessage)].Remove(removeItem));
+			else
+			{
+				subScribers = new List<WeakReference>();
+				subScribers.Add(new WeakReference(Subscriber));
+				SubscriberStore.Add(typeof(T), subScribers);
+			}
 		}
 	}
 }

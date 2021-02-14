@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using log4net;
+using System.Threading.Tasks;
 using System.Windows;
 using WorkTime.Components;
 using WorkTime.Interfaces;
@@ -11,7 +12,7 @@ namespace WorkTime
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
-	public partial class App : Application
+	public partial class App : Application, ISubscribe<ReportPageRequestMessage>,ISubscribe<OptionsPageRequestMessage>,ISubscribe<ExitRequestMessage>
 	{
 		private static ILog log = LogManager.GetLogger(nameof(App));
 
@@ -28,9 +29,9 @@ namespace WorkTime
 
 			Messenger = IoCContainer.Resolve<IMessenger>();
 
-			Messenger.Subscribe<ReportPageRequestMessage>(OnReportRequest);
-			Messenger.Subscribe<OptionsPageRequestMessage>(OnOptionsRequest);
-			Messenger.Subscribe<ExitRequestMessage>((m)=> Current.Shutdown());
+			Messenger.Subscribe<ReportPageRequestMessage>(this);
+			Messenger.Subscribe<OptionsPageRequestMessage>(this);
+			Messenger.Subscribe<ExitRequestMessage>(this);
 
 			//Tracker = IoCContainer.Resolve<ITimeTracker>();
 			//Tracker.Start();
@@ -44,15 +45,25 @@ namespace WorkTime
 			base.OnExit(e);
 		}
 
-		public void OnReportRequest(ReportPageRequestMessage message) {
-			log.Info("Report page requested");
-			IoCContainer.Resolve<ReportView>().Show();
+		public Task OnMessage(ReportPageRequestMessage message) {
+			return Task.Factory.StartNew(() =>{
+				log.Info("Report page requested");
+				IoCContainer.Resolve<ReportView>().Show();
+			});
 		}
 
-		public void OnOptionsRequest(OptionsPageRequestMessage message)
+		public Task OnMessage(OptionsPageRequestMessage message)
 		{
-			log.Info("Options page requested");
-			IoCContainer.Resolve<OptionsView>().Show();
+			return Task.Factory.StartNew(() => { 
+				log.Info("Options page requested");
+				IoCContainer.Resolve<OptionsView>().Show();
+			});
+		}
+
+		public Task OnMessage(ExitRequestMessage message) {
+			return Task.Factory.StartNew(()=> {
+				Current.Shutdown();
+			});
 		}
 	}
 

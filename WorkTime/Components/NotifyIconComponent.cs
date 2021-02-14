@@ -39,7 +39,7 @@ namespace WorkTime.Components
 			foreach (var item in composition)
 			{
 				var menuItem = new MenuItem(item.Key);
-				menuItem.Click += (s, e) => Messenger.Publish(item.Value);
+				menuItem.Click += (s, e) => Messenger.PublishAsync(item.Value);
 				menu.MenuItems.Add(menuItem);
 			}
 			return menu;
