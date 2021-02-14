@@ -48,7 +48,13 @@ namespace WorkTime
 		public Task OnMessage(ReportPageRequestMessage message) {
 			return Task.Factory.StartNew(() =>{
 				log.Info("Report page requested");
-				IoCContainer.Resolve<ReportView>().Show();
+
+				//a Dsipatcher is needed to manipulate GUI stuff from a Task, otherwise STA exception
+				//https://stackoverflow.com/questions/37648693/wpf-trying-to-open-a-new-window-in-a-task-but-receive-a-the-calling-thread-mu
+
+				Current.Dispatcher.Invoke(() => { 
+					IoCContainer.Resolve<ReportView>().Show();
+				});
 			});
 		}
 
@@ -56,13 +62,19 @@ namespace WorkTime
 		{
 			return Task.Factory.StartNew(() => { 
 				log.Info("Options page requested");
-				IoCContainer.Resolve<OptionsView>().Show();
+				Current.Dispatcher.Invoke(() =>
+				{
+					IoCContainer.Resolve<OptionsView>().Show();
+				});
 			});
 		}
 
 		public Task OnMessage(ExitRequestMessage message) {
 			return Task.Factory.StartNew(()=> {
-				Current.Shutdown();
+				Current.Dispatcher.Invoke(() =>
+				{
+					Current.Shutdown();
+				});
 			});
 		}
 	}
