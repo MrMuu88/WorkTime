@@ -4,16 +4,17 @@ namespace WorkTime.Models
 {
 	public class TimeFrame
 	{
-		public DateTime Started { get; internal set; }
-		public TimeSpan Span {get;internal set;}
-		public TimeFrameType Type { get; internal set; }
-		public TimeFrame(DateTime started, TimeSpan span, TimeFrameType type = TimeFrameType.Work)
+		public DateTime Start { get; internal set; }
+		public DateTime End { get => Start.Add(Span); }
+
+		public TimeSpan Span { get; set; }
+		public TimeFrame()
 		{
-			Started = started;
-			Span = span;
-			Type = type;
+			Start = DateTime.Now;
+			Span = TimeSpan.FromSeconds(0);
 		}
+
+		
 	}
 
-	public enum TimeFrameType { Work,Break}
 }

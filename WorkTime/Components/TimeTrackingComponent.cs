@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-using System;
+﻿using System;
 using System.Linq;
 using System.Timers;
 using WorkTime.Interfaces;
@@ -7,50 +6,52 @@ using WorkTime.Models;
 
 namespace WorkTime.Components
 {
-	public class TimeTrackingComponent:ITimeTracker
+	public class TimeTrackingComponent : ITimeTracker
 	{
 		public WorkDay CurrentWorkDay { get; set; }
 		public IMessenger Messenger { get; }
+		public ISettingManager SettingManager { get; }
+		public double TrackingInterval {get;}
 		private readonly Timer timer; 
 
-		public TimeTrackingComponent(IMessenger messenger)
+		//TODO On sdettings Changed event restart the timer with new values
+		public TimeTrackingComponent(IMessenger messenger, ISettingManager settingManager)
 		{
-			//TODO move settings to a settings handler class, that can send a message for SettingsChanged
 			Messenger = messenger;
-			timer = new Timer { AutoReset = true, Interval = Properties.Settings.Default.TrackingInterval, Enabled = true };
-			timer.Elapsed += (s, e) => OnTimerElapsed(CurrentWorkDay);				//a traditional Eventhandler cannot be unit tested
+			SettingManager = settingManager;
+			TrackingInterval = settingManager.Settings.TimeTracking.TrackingInterval;
+
+			timer = new Timer { AutoReset = true, Interval = TrackingInterval, Enabled = true };
+			timer.Elapsed += (s, e) => OnTimerElapsed();				//a traditional Eventhandler cannot be unit tested
 		}
 
-		internal void OnTimerElapsed(WorkDay workday){
-			var dtnow = DateTime.Now;												//to eliminate ms changes between statements
-			var span = dtnow - workday.LastWorked;
-			var lastframe = workday.TimeFrames.Last();
+		internal void OnTimerElapsed(){
+			var currentTimeframe = CurrentWorkDay.TimeFrames.FirstOrDefault();
 
-			if (span.Ticks > TimeSpan.FromMilliseconds(Properties.Settings.Default.BreakTreshold).Ticks)
+			if (currentTimeframe == null) {
+				currentTimeframe = new TimeFrame();
+				CurrentWorkDay.TimeFrames.Add(currentTimeframe);
+			}
+			
+			var elapsed =(int) Math.Floor((DateTime.Now - currentTimeframe.End).TotalSeconds);
+			if (elapsed < TrackingInterval)
 			{
-				//Close the last frame
+				currentTimeframe.Span.Add(TimeSpan.FromSeconds(TrackingInterval));
+			}
+			else
+			{
+				currentTimeframe = new TimeFrame();
+				CurrentWorkDay.TimeFrames.Add(currentTimeframe);
+			}
 				
-				//TODO throw an exception if the lastframe is not Work type
-				lastframe.Span = (workday.LastWorked - lastframe.Started);
-
-				//add a new beak frame
-				workday.TimeFrames.Add(new TimeFrame(workday.LastWorked, span, TimeFrameType.Break));
-
-				//add a new work Frame
-				workday.TimeFrames.Add(new TimeFrame(dtnow, TimeSpan.FromMilliseconds(Properties.Settings.Default.TrackingInterval)));
-			}
-			else {
-				lastframe.Span = lastframe.Span.Add(span);
-			}
-
-			workday.LastWorked = dtnow;
+			
+			
 		}
 
 		public void Start() {
 			CurrentWorkDay = new WorkDay();
 			timer.Start();
 		}
-
 
 		public void Stop() {
 			timer.Stop();

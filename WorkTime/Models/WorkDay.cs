@@ -5,23 +5,11 @@ namespace WorkTime.Models
 {
 	public class WorkDay
 	{
-		public DateTime Started { get; internal set; } = DateTime.Now;
-		public DateTime LastWorked { get; internal set; } = DateTime.Now;
-
-		public List<TimeFrame> TimeFrames { get; internal set; } = new List<TimeFrame>() { new TimeFrame(DateTime.Now,default)};
+		public DateTime Date {get; private set;}
+		public List<TimeFrame> TimeFrames { get; internal set; } = new List<TimeFrame>() {};
 		
-		public WorkDay(){}
-
-		public WorkDay(DateTime started)
-		{
-			Started = started;
-			LastWorked = started;
-		}
-
-		internal WorkDay(DateTime started, DateTime lastWorked)
-		{
-			Started = started;
-			LastWorked = lastWorked;
+		public WorkDay(){
+			Date = DateTime.Now.Date;
 		}
 	}
 }
