@@ -5,6 +5,7 @@ namespace WorkTime.Models
 	public class TimeFrame
 	{
 		public DateTime Start { get; internal set; }
+		
 		public DateTime End { get => Start.Add(Span); }
 
 		public TimeSpan Span { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Timers;
 using WorkTime.Interfaces;
@@ -11,7 +12,7 @@ namespace WorkTime.Components
 		public WorkDay CurrentWorkDay { get; set; }
 		public IMessenger Messenger { get; }
 		public ISettingManager SettingManager { get; }
-		public double TrackingInterval {get;}
+		public TimeSpan TrackingInterval {get;}
 		private readonly Timer timer; 
 
 		//TODO On sdettings Changed event restart the timer with new values
@@ -19,28 +20,33 @@ namespace WorkTime.Components
 		{
 			Messenger = messenger;
 			SettingManager = settingManager;
-			TrackingInterval = settingManager.Settings.TimeTracking.TrackingInterval;
+			TrackingInterval = TimeSpan.FromMinutes(SettingManager.Settings.TimeTracking.TrackingInterval);
 
-			timer = new Timer { AutoReset = true, Interval = TrackingInterval, Enabled = true };
+			CurrentWorkDay = new WorkDay();
+
+			timer = new Timer { 
+				AutoReset = true,
+				Interval =TrackingInterval.TotalMilliseconds,
+				Enabled = false
+			};
 			timer.Elapsed += (s, e) => OnTimerElapsed();				//a traditional Eventhandler cannot be unit tested
 		}
 
 		internal void OnTimerElapsed(){
-			var currentTimeframe = CurrentWorkDay.TimeFrames.FirstOrDefault();
+			var currentTimeframe = CurrentWorkDay.TimeFrames.Last();
 
-			if (currentTimeframe == null) {
-				currentTimeframe = new TimeFrame();
-				CurrentWorkDay.TimeFrames.Add(currentTimeframe);
-			}
-			
-			var elapsed =(int) Math.Floor((DateTime.Now - currentTimeframe.End).TotalSeconds);
-			if (elapsed < TrackingInterval)
+			var now = DateTime.Now;
+			var elapsed =(now-currentTimeframe.End);
+			var checkAgainst = TrackingInterval.Add(TimeSpan.FromSeconds(1));
+			Trace.WriteLine($"{elapsed.TotalSeconds}s <= {checkAgainst.TotalSeconds} s");
+			if (elapsed <= checkAgainst) // adding 1 sec to compensate for milisieconds inconsistencies
 			{
-				currentTimeframe.Span.Add(TimeSpan.FromSeconds(TrackingInterval));
+				currentTimeframe.Span = currentTimeframe.Span.Add(TrackingInterval);
 			}
 			else
 			{
 				currentTimeframe = new TimeFrame();
+				currentTimeframe.Span = currentTimeframe.Span.Add(TrackingInterval);
 				CurrentWorkDay.TimeFrames.Add(currentTimeframe);
 			}
 				
@@ -49,8 +55,8 @@ namespace WorkTime.Components
 		}
 
 		public void Start() {
-			CurrentWorkDay = new WorkDay();
 			timer.Start();
+			OnTimerElapsed();
 		}
 
 		public void Stop() {

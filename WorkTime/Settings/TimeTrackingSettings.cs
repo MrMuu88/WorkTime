@@ -1,16 +1,8 @@
 ﻿namespace WorkTime.Settings
 {
-	public class TimeTrackingSettings : SettingsBase {
-		public double TrackingInterval
-		{
-			get => Get<double>();
-			set => Set(value);
-		}
+	public class TimeTrackingSettings{
+		public double TrackingInterval { get; set; } = 5*60;
 
-		public double BreakTreshold
-		{
-			get => Get<double>();
-			set => Set(value);
-		}
+		public double BreakTreshold { get; set; } = 10*60;
 	}
 }
