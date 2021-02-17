@@ -2,7 +2,7 @@
 
 namespace WorkTime.Core.Models
 {
-	public class TimeFrame
+	public class TimeFrame:BaseModel
 	{
 		private DateTime lastCheck;
 

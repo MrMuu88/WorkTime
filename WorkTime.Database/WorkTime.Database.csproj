@@ -10,10 +10,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.9" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Configurations\" />
-  </ItemGroup>
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
       <_Parameter1>WorkTime.Tests</_Parameter1>
