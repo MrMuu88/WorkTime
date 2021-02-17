@@ -4,6 +4,9 @@ namespace WorkTime.Core.Models
 {
 	public class TimeFrame:BaseModel
 	{
+
+		public WorkDay WorkDay { get; set; }
+
 		private DateTime lastCheck;
 
 		public DateTime Start { get; private set; }
@@ -19,8 +22,6 @@ namespace WorkTime.Core.Models
 			End = Start;
 
 		}
-
-
 	}
 
 }
