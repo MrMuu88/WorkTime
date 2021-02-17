@@ -1,12 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using WorkTime.Components;
-using WorkTime.Interfaces;
-using WorkTime.Settings;
+using WorkTime.Core.Interfaces;
+using WorkTime.Core.Models.Settings;
 
 namespace WorkTime.Tests
 {
