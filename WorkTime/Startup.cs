@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using WorkTime.Components;
-using WorkTime.Interfaces;
+using WorkTime.Core.Interfaces;
 using WorkTime.Views;
 
 namespace WorkTime

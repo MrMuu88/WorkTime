@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace WorkTime.Models
+namespace WorkTime.Core.Models
 {
 	public class TimeFrame
 	{
 		private DateTime lastCheck;
 
 		public DateTime Start { get; private set; }
-		public DateTime LastCheck { get => lastCheck; set{ lastCheck = value; End = value; } }
+		public DateTime LastCheck { get => lastCheck; set { lastCheck = value; End = value; } }
 		public DateTime End { get; set; }
 
 		public TimeSpan Span { get => End - Start; }

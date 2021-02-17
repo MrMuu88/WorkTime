@@ -1,4 +1,4 @@
-﻿namespace WorkTime.Settings
+﻿namespace WorkTime.Core.Models.Settings
 {
 	public class AppSettings
 	{

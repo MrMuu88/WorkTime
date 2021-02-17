@@ -1,6 +1,6 @@
-﻿using WorkTime.Models;
+﻿using WorkTime.Core.Models;
 
-namespace WorkTime.Interfaces
+namespace WorkTime.Core.Interfaces
 {
 	public interface ITimeTracker
 	{

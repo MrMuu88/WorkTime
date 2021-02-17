@@ -168,15 +168,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Settings\AppSettings.cs" />
-    <Compile Include="Messages\SettingsChangedMessage.cs" />
     <Compile Include="Components\SettingsComponent.cs" />
-    <Compile Include="Interfaces\ISettingManager.cs" />
-    <Compile Include="Interfaces\ITimeTracker.cs" />
     <Compile Include="Components\TimeTrackingComponent.cs" />
-    <Compile Include="Models\TimeFrame.cs" />
-    <Compile Include="Models\WorkDay.cs" />
-    <Compile Include="Settings\TimeTrackingSettings.cs" />
     <Compile Include="Views\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
     </Compile>
@@ -188,13 +181,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Interfaces\IMessenger.cs" />
     <Compile Include="Components\MessengerComponent.cs" />
     <Compile Include="Components\NotifyIconComponent.cs" />
-    <Compile Include="Extensions\DictionaryExtensions.cs" />
-    <Compile Include="Messages\ExitRequestMessage.cs" />
-    <Compile Include="Messages\OptionsPageRequestMessage.cs" />
-    <Compile Include="Messages\ReportPageRequestMessage.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Views\ReportView.xaml.cs">
       <DependentUpon>ReportView.xaml</DependentUpon>
@@ -232,11 +220,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Exceptions\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\WorkTime.Core\WorkTime.Core.csproj">
+      <Project>{d32b581a-a50f-4e7b-a3d3-c80d926b6996}</Project>
+      <Name>WorkTime.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WorkTime.Database\WorkTime.Database.csproj">
       <Project>{163078c6-b3e8-471b-b951-fdaf59cfc1cd}</Project>
       <Name>WorkTime.Database</Name>

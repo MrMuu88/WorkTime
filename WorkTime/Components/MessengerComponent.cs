@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WorkTime.Interfaces;
+using WorkTime.Core.Interfaces;
 
 namespace WorkTime.Components
 {

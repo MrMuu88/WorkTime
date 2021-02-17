@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
-using WorkTime.Interfaces;
-using WorkTime.Messages;
-using WorkTime.Settings;
+using WorkTime.Core.Interfaces;
+using WorkTime.Core.Models.Settings;
+using WorkTime.Core.Messages;
 
 namespace WorkTime.Components
 {

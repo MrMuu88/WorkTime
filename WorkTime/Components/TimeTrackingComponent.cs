@@ -2,8 +2,8 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Timers;
-using WorkTime.Interfaces;
-using WorkTime.Models;
+using WorkTime.Core.Interfaces;
+using WorkTime.Core.Models;
 
 namespace WorkTime.Components
 {

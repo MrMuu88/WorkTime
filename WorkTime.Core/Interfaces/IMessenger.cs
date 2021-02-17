@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace WorkTime.Interfaces
+namespace WorkTime.Core.Interfaces
 {
 	public interface IMessenger
 	{

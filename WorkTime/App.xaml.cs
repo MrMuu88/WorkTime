@@ -3,8 +3,8 @@ using log4net;
 using System.Threading.Tasks;
 using System.Windows;
 using WorkTime.Components;
-using WorkTime.Interfaces;
-using WorkTime.Messages;
+using WorkTime.Core.Interfaces;
+using WorkTime.Core.Messages;
 using WorkTime.Views;
 
 namespace WorkTime

@@ -1,6 +1,6 @@
-﻿using WorkTime.Settings;
+﻿using WorkTime.Core.Models.Settings;
 
-namespace WorkTime.Interfaces
+namespace WorkTime.Core.Interfaces
 {
 	public interface ISettingManager
 	{

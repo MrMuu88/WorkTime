@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
-using WorkTime.Interfaces;
-using WorkTime.Messages;
+using WorkTime.Core.Interfaces;
+using WorkTime.Core.Messages;
 
 namespace WorkTime.Components
 {
