@@ -22,7 +22,7 @@ namespace WorkTime.Components
 			SettingManager = settingManager;
 			TrackingInterval = TimeSpan.FromMinutes(SettingManager.Settings.TimeTracking.TrackingInterval);
 
-			CurrentWorkDay = new WorkDay();
+			CurrentWorkDay = new WorkDay(); //TODO Move this outside of this ctor
 
 			timer = new Timer { 
 				AutoReset = true,
@@ -36,17 +36,17 @@ namespace WorkTime.Components
 			var currentTimeframe = CurrentWorkDay.TimeFrames.Last();
 
 			var now = DateTime.Now;
-			var elapsed =(now-currentTimeframe.End);
-			var checkAgainst = TrackingInterval.Add(TimeSpan.FromSeconds(1));
+			var elapsed =(now-currentTimeframe.LastCheck);
+			var checkAgainst = TrackingInterval.Add(TimeSpan.FromSeconds(1)); // adding 1 sec to compensate for milisieconds inconsistencies
+
 			Trace.WriteLine($"{elapsed.TotalSeconds}s <= {checkAgainst.TotalSeconds} s");
-			if (elapsed <= checkAgainst) // adding 1 sec to compensate for milisieconds inconsistencies
+			if (elapsed <= checkAgainst) 
 			{
-				currentTimeframe.Span = currentTimeframe.Span.Add(TrackingInterval);
+				currentTimeframe.LastCheck = now;
 			}
 			else
 			{
 				currentTimeframe = new TimeFrame();
-				currentTimeframe.Span = currentTimeframe.Span.Add(TrackingInterval);
 				CurrentWorkDay.TimeFrames.Add(currentTimeframe);
 			}
 				

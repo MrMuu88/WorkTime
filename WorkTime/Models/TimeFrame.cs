@@ -4,18 +4,23 @@ namespace WorkTime.Models
 {
 	public class TimeFrame
 	{
-		public DateTime Start { get; internal set; }
-		
-		public DateTime End { get => Start.Add(Span); }
+		private DateTime lastCheck;
 
-		public TimeSpan Span { get; set; }
+		public DateTime Start { get; private set; }
+		public DateTime LastCheck { get => lastCheck; set{ lastCheck = value; End = value; } }
+		public DateTime End { get; set; }
+
+		public TimeSpan Span { get => End - Start; }
+
 		public TimeFrame()
 		{
 			Start = DateTime.Now;
-			Span = TimeSpan.FromSeconds(0);
+			LastCheck = Start;
+			End = Start;
+
 		}
 
-		
+
 	}
 
 }
