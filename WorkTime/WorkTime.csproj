@@ -174,7 +174,6 @@
     <Compile Include="Interfaces\ISettingManager.cs" />
     <Compile Include="Interfaces\ITimeTracker.cs" />
     <Compile Include="Components\TimeTrackingComponent.cs" />
-    <Compile Include="Settings\SettingsBase.cs" />
     <Compile Include="Models\TimeFrame.cs" />
     <Compile Include="Models\WorkDay.cs" />
     <Compile Include="Settings\TimeTrackingSettings.cs" />
