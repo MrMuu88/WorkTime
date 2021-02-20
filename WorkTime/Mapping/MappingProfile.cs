@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using WorkTime.Core.Models;
+using WorkTime.Core.Models.Settings;
 using WorkTime.ViewModels;
 
 namespace WorkTime.Mapping
@@ -10,6 +11,9 @@ namespace WorkTime.Mapping
 		{
 			CreateMap<WorkDay, WorkDayViewModel>().ReverseMap();
 			CreateMap<TimeFrame, TimeFrameViewModel>().ReverseMap();
+
+			CreateMap<AppSettings, AppsettingsViewModel>().ReverseMap();
+			CreateMap<TimeTrackingSettings, TimeTrackingSettingsViewModel>().ReverseMap();
 		}
 	}
 }
