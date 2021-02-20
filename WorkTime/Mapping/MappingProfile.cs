@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using WorkTime.Core.Models;
 using WorkTime.Core.Models.Settings;
-using WorkTime.ViewModels;
+using WorkTime.ViewModels.DTOs;
 
 namespace WorkTime.Mapping
 {
@@ -9,11 +9,11 @@ namespace WorkTime.Mapping
 	{
 		public MappingProfile()
 		{
-			CreateMap<WorkDay, WorkDayViewModel>().ReverseMap();
-			CreateMap<TimeFrame, TimeFrameViewModel>().ReverseMap();
+			CreateMap<WorkDay, WorkDayDTO>().ReverseMap();
+			CreateMap<TimeFrame, TimeFrameDTO>().ReverseMap();
 
-			CreateMap<AppSettings, AppsettingsViewModel>().ReverseMap();
-			CreateMap<TimeTrackingSettings, TimeTrackingSettingsViewModel>().ReverseMap();
+			CreateMap<AppSettings, AppsettingsDTO>().ReverseMap();
+			CreateMap<TimeTrackingSettings, TimeTrackingSettingsDTO>().ReverseMap();
 		}
 	}
 }

@@ -200,12 +200,12 @@
     <Compile Include="Components\SettingsComponent.cs" />
     <Compile Include="Components\TimeTrackingComponent.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
-    <Compile Include="ViewModels\AppsettingsViewModel.cs" />
+    <Compile Include="ViewModels\DTOs\AppsettingsDTO.cs" />
     <Compile Include="ViewModels\OptionsViewModel.cs" />
-    <Compile Include="ViewModels\TimeFrameViewModel.cs" />
-    <Compile Include="ViewModels\TimeTrackingSettingsViewModel.cs" />
+    <Compile Include="ViewModels\DTOs\TimeFrameViewModel.cs" />
+    <Compile Include="ViewModels\DTOs\TimeTrackingSettingsDTO.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="ViewModels\WorkDayViewModel.cs" />
+    <Compile Include="ViewModels\DTOs\WorkDayDTO.cs" />
     <Compile Include="ViewModels\ReportsViewModel.cs" />
     <Compile Include="Views\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
