@@ -16,7 +16,6 @@ namespace WorkTime
 
 			builder.RegisterType<OptionsView>().AsSelf().InstancePerDependency();
 
-			builder.RegisterType<ReportsViewModel>().AsSelf().InstancePerDependency();
 			builder.RegisterType<OptionsViewModel>().AsSelf().InstancePerDependency();
 
 			return builder.Build();
