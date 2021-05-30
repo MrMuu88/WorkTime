@@ -205,7 +205,6 @@
     <Compile Include="ViewModels\DTOs\TimeTrackingSettingsDTO.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\DTOs\WorkDayDTO.cs" />
-    <Compile Include="ViewModels\ReportsViewModel.cs" />
     <Compile Include="Views\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
     </Compile>
