@@ -9,7 +9,10 @@ namespace WorkTime.Components
 	public class SettingsComponent : ISettingManager
 	{
 		private readonly string settingsfile = @".\Settings.json";
-		public AppSettings Settings { get; internal set; }
+		private static AppSettings settings;
+
+		public AppSettings Settings { get => settings; internal set => settings = value; }
+
 
 		public IMessenger Messenger { get; }
 
@@ -58,7 +61,8 @@ namespace WorkTime.Components
 			return Settings;
 		}
 
-		public AppSettings Save(AppSettings newsettings) {
+		public AppSettings Save(AppSettings newsettings)
+		{
 			Settings = newsettings;
 			return Save();
 		}
