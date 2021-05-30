@@ -18,7 +18,6 @@ namespace WorkTime
 
 		public static IContainer IoCContainer { get; private set; }
 		public IMessenger Messenger { get; private set; }
-		public ITimeTracker Tracker { get; private set; }
 
 		protected override void OnStartup(StartupEventArgs e)
 		{
@@ -40,7 +39,6 @@ namespace WorkTime
 
 		protected override void OnExit(ExitEventArgs e)
 		{
-			Tracker.Stop();
 			log.Info("Aplication exited");
 			base.OnExit(e);
 		}

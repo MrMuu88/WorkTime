@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WorkTime.ViewModels;
 
 namespace WorkTime.Views
 {
@@ -7,7 +8,7 @@ namespace WorkTime.Views
 	/// </summary>
 	public partial class ReportView : Window
 	{
-		public ReportView()
+		public ReportView(ReportsViewModel viewModel)
 		{
 			InitializeComponent();
 		}
