@@ -24,7 +24,7 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Label Grid.Row="1" Grid.Column="0">Personal Access Token:</Label>
-		<TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Appsettings.DevOps.PesonalAccessToken}"/>
+		<TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding AppSettings.DevOps.PesonalAccessToken}"/>
 
 		<Label Grid.Row="2" VerticalAlignment="Center">Start menu at:</Label>
 		<ComboBox Grid.Row="2" Grid.Column="1" Margin="5">
@@ -35,10 +35,10 @@
 		
 
 		<Label Grid.Row="3">Show My assigments only</Label>
-		<CheckBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding Appsettings.Menu.MyAsigmentsOnly}"/>
+		<CheckBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding AppSettings.Menu.MyAsigmentsOnly}"/>
 		
 		<Label Grid.Row="4">Start program with Windows:</Label>
-		<CheckBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding Appsettings.StartWithWindows}"/>
+		<CheckBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding AppSettings.StartWithWindows}"/>
 
 		<StackPanel Grid.Row="100" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5">
 			<Button Margin="5px" Width="50px">Ok</Button>

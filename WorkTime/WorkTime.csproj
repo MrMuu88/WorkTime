@@ -199,7 +199,7 @@
     </ApplicationDefinition>
     <Compile Include="Components\SettingsComponent.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
-    <Compile Include="ViewModels\DTOs\AppsettingsDTO.cs" />
+    <Compile Include="ViewModels\DTOs\AppSettingsDTO.cs" />
     <Compile Include="ViewModels\DTOs\DevOpsSettingsDTO.cs" />
     <Compile Include="ViewModels\DTOs\MenuSettingsDTO.cs" />
     <Compile Include="ViewModels\OptionsViewModel.cs" />

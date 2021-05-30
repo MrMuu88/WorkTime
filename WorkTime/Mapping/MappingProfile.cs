@@ -8,7 +8,7 @@ namespace WorkTime.Mapping
 	{
 		public MappingProfile()
 		{
-			CreateMap<AppSettings, AppsettingsDTO>().ReverseMap();
+			CreateMap<AppSettings, AppSettingsDTO>().ReverseMap();
 
 			CreateMap<DevOpsSettings, DevOpsSettingsDTO>();
 			CreateMap<DevOpsSettingsDTO, DevOpsSettings>().ForMember(m => m.BaseUrl,o => o.UseDestinationValue());

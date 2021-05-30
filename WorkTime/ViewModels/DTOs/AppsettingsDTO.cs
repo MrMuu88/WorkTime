@@ -1,6 +1,6 @@
 ﻿namespace WorkTime.ViewModels.DTOs
 {
-	public class AppsettingsDTO : ViewModelBase
+	public class AppSettingsDTO : ViewModelBase
 	{
 		private bool startWithWindows = true;
 		private MenuSettingsDTO menu = new MenuSettingsDTO();
