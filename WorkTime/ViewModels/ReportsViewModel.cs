@@ -1,21 +1,22 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using WorkTime.ViewModels;
 using WorkTime.ViewModels.DTOs;
 
-namespace WorkTime
+namespace WorkTime.ViewModels
 {
 	public class ReportsViewModel : ViewModelBase
 	{
 		private ObservableCollection<WorkDayDTO> workDays = new ObservableCollection<WorkDayDTO>();
 
-		public ObservableCollection<WorkDayDTO> WorkDays {
+		public ObservableCollection<WorkDayDTO> WorkDays
+		{
 			get => workDays;
-			set {
+			set
+			{
 				WorkDays.CollectionChanged -= WorkDays_CollectionChanged;
 				workDays = value;
 				workDays.CollectionChanged += WorkDays_CollectionChanged;
-				Changed(); 
+				Changed();
 			}
 		}
 

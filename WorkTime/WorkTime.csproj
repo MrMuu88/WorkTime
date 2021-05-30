@@ -198,7 +198,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Components\SettingsComponent.cs" />
-    <Compile Include="Components\TimeTrackingComponent.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
     <Compile Include="ViewModels\DTOs\AppsettingsDTO.cs" />
     <Compile Include="ViewModels\OptionsViewModel.cs" />

@@ -18,7 +18,6 @@ namespace WorkTime
 
 		public static IContainer IoCContainer { get; private set; }
 		public IMessenger Messenger { get; private set; }
-		public ITimeTracker Tracker { get; private set; }
 
 		protected override void OnStartup(StartupEventArgs e)
 		{
@@ -33,14 +32,11 @@ namespace WorkTime
 			Messenger.Subscribe<OptionsPageRequestMessage>(this);
 			Messenger.Subscribe<ExitRequestMessage>(this);
 
-			//Tracker = IoCContainer.Resolve<ITimeTracker>();
-			//Tracker.Start();
 			IoCContainer.Resolve<NotifyIconComponent>().Enable();
 		}
 
 		protected override void OnExit(ExitEventArgs e)
 		{
-			Tracker.Stop();
 			log.Info("Aplication exited");
 			base.OnExit(e);
 		}
