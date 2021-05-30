@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using WorkTime.Core.Interfaces;
+using WorkTime.Core.Models;
 using WorkTime.Core.Models.Settings;
 using WorkTime.Helpers;
 using WorkTime.ViewModels.DTOs;
@@ -22,6 +23,8 @@ namespace WorkTime.ViewModels
 		{
 			get => appSettings; set { appSettings = value; Changed(); }
 		}
+
+		public Array WorkItemTypes { get => Enum.GetValues(typeof(WorkItemType)); }
 
 		public OptionsViewModel()
 		{

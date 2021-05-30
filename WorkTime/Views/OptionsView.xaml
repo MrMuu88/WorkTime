@@ -3,8 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:behaviours="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:local="clr-namespace:WorkTime.Views"
 		xmlns:vms="clr-namespace:WorkTime.ViewModels"
         mc:Ignorable="d"
         Title="OptionsView" Name="OptionsWindow" MinHeight="250" Height="200" MinWidth="300" Width="350"
@@ -29,11 +27,8 @@
 		<TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding AppSettings.DevOps.PersonalAccessToken}"/>
 
 		<Label Grid.Row="2" VerticalAlignment="Center">Start menu at:</Label>
-		<ComboBox Grid.Row="2" Grid.Column="1" Margin="5">
-			<ComboBoxItem>Requirement</ComboBoxItem>
-			<ComboBoxItem>Feature</ComboBoxItem>
-			<ComboBoxItem>Epic</ComboBoxItem>
-		</ComboBox>
+		<ComboBox Grid.Row="2" Grid.Column="1" Margin="5" ItemsSource="{Binding WorkItemTypes}" SelectedItem="{Binding AppSettings.Menu.StartMenuAt}"/>
+
 
 
 		<Label Grid.Row="3">Show My assigments only</Label>
