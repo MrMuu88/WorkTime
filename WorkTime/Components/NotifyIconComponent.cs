@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
-using WorkTime.Interfaces;
-using WorkTime.Messages;
+using WorkTime.Core.Interfaces;
+using WorkTime.Core.Messages;
 
 namespace WorkTime.Components
 {
@@ -10,9 +10,7 @@ namespace WorkTime.Components
 		public IMessenger Messenger { get; }
 
 		private static readonly Dictionary<string, dynamic> MenuComposition = new Dictionary<string, dynamic> {
-			{ "Show report",new ReportPageRequestMessage() },
 			{ "Options",new OptionsPageRequestMessage() },
-			{ "Disable/enable",new SwitchMessage() },
 			{ "Exit",new ExitRequestMessage() },
 		};
 		private NotifyIcon NotifyIcon { get; set; } = new NotifyIcon() {
@@ -35,12 +33,12 @@ namespace WorkTime.Components
 			NotifyIcon.Visible = false;
 		}
 
-		public ContextMenu ComposeMenu(Dictionary<string,dynamic> composition) {
+		private ContextMenu ComposeMenu(Dictionary<string,dynamic> composition) {
 			var menu = new ContextMenu();
 			foreach (var item in composition)
 			{
 				var menuItem = new MenuItem(item.Key);
-				menuItem.Click += (s, e) => Messenger.Publish(item.Value);
+				menuItem.Click += (s, e) => Messenger.PublishAsync(item.Value);
 				menu.MenuItems.Add(menuItem);
 			}
 			return menu;

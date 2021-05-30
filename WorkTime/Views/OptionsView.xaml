@@ -3,10 +3,44 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WorkTime.Views"
+		xmlns:vms="clr-namespace:WorkTime.ViewModels"
         mc:Ignorable="d"
-        Title="OptionsView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="OptionsView" Name="OptionsWindow" MinHeight="250" Height="200" MinWidth="300" Width="350"
+		d:DataContext="{d:DesignInstance Type=vms:OptionsViewModel, IsDesignTimeCreatable=True}">
+
+	<Grid VerticalAlignment="Stretch">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition MinWidth="180px" Width="180px"/>
+			<ColumnDefinition MinWidth="120px" Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
+			<!-- I Purposefully don't use row 0, it's confusing to look at-->
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Label Grid.Row="1" Grid.Column="0">Personal Access Token:</Label>
+		<TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding AppSettings.DevOps.PersonalAccessToken}"/>
+
+		<Label Grid.Row="2" VerticalAlignment="Center">Start menu at:</Label>
+		<ComboBox Grid.Row="2" Grid.Column="1" Margin="5" ItemsSource="{Binding WorkItemTypes}" SelectedItem="{Binding AppSettings.Menu.StartMenuAt}"/>
+
+
+
+		<Label Grid.Row="3">Show My assigments only</Label>
+		<CheckBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding AppSettings.Menu.MyAssignmentsOnly}"/>
+
+		<Label Grid.Row="4">Start program with Windows:</Label>
+		<CheckBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding AppSettings.StartWithWindows}"/>
+
+		<StackPanel Grid.Row="100" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5">
+			<Button Margin="5px" Width="50px" Command="{Binding CmdSave}" CommandParameter="{Binding ElementName=OptionsWindow}">Ok</Button>
+			<Button Margin="5px" Width="50px" Command="{Binding CmdCancel}" CommandParameter="{Binding ElementName=OptionsWindow}">Cancel</Button>
+		</StackPanel>
+	</Grid>
+
 </Window>
