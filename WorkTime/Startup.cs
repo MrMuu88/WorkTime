@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using AutoMapper.Contrib.Autofac.DependencyInjection;
 using WorkTime.Components;
 using WorkTime.Core.Interfaces;
 using WorkTime.ViewModels;
@@ -16,6 +17,7 @@ namespace WorkTime
 
 			builder.RegisterType<OptionsView>().AsSelf().InstancePerDependency();
 			builder.RegisterType<OptionsViewModel>().AsSelf().InstancePerDependency();
+			builder.RegisterAutoMapper(typeof(Startup).Assembly);
 
 			return builder.Build();
 		}

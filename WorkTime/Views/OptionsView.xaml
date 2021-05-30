@@ -41,8 +41,8 @@
 		<CheckBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding AppSettings.StartWithWindows}"/>
 
 		<StackPanel Grid.Row="100" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5">
-			<Button Margin="5px" Width="50px">Ok</Button>
-			<Button Margin="5px" Width="50px">Cancel</Button>
+			<Button Margin="5px" Width="50px" Command="{Binding CmdSave}">Ok</Button>
+			<Button Margin="5px" Width="50px" Command="{Binding CmdCancel}">Cancel</Button>
 		</StackPanel>
 	</Grid>
 

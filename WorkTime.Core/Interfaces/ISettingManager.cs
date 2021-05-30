@@ -9,6 +9,6 @@ namespace WorkTime.Core.Interfaces
 		AppSettings Load();
 		AppSettings ResetToDefaults();
 		AppSettings Save();
-		AppSettings Save(AppSettings);
+		AppSettings Save(AppSettings settings);
 	}
 }
