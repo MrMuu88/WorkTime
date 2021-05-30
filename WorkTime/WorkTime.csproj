@@ -200,6 +200,8 @@
     <Compile Include="Components\SettingsComponent.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
     <Compile Include="ViewModels\DTOs\AppsettingsDTO.cs" />
+    <Compile Include="ViewModels\DTOs\DevOpsSettingsDTO.cs" />
+    <Compile Include="ViewModels\DTOs\MenuSettingsDTO.cs" />
     <Compile Include="ViewModels\OptionsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\OptionsView.xaml.cs">

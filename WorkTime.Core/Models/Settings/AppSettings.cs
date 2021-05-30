@@ -7,10 +7,4 @@
 		public MenuSettings Menu { get; set; } = new MenuSettings();
 		public bool StartWithWindows { get; set; } = true;
 	}
-
-	public class MenuSettings
-	{
-		public WorkItemType StartMenuAt { get; set; } = WorkItemType.Requirement;
-		public bool MyAssignmentsOnly { get; set; } = true;
-	}
 }

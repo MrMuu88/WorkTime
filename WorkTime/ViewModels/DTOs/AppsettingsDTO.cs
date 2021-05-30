@@ -1,32 +1,24 @@
-﻿using WorkTime.Core.Models;
-
-namespace WorkTime.ViewModels.DTOs
+﻿namespace WorkTime.ViewModels.DTOs
 {
 	public class AppsettingsDTO : ViewModelBase
 	{
-		private string pesonalAccessToken;
-		private WorkItemType startMenuAt;
-		private bool myAsigmentsOnly;
 		private bool startWithWindows;
+		private MenuSettingsDTO menu;
+		private DevOpsSettingsDTO devOps;
 
-		public string PesonalAccessToken {
-			get => pesonalAccessToken;
-			set { pesonalAccessToken = value; Changed(); }
-		}
-
-		public WorkItemType StartMenuAt {
-			get => startMenuAt;
-			set { startMenuAt = value; Changed(); } 
-		}
-
-		public bool MyAsigmentsOnly {
-			get => myAsigmentsOnly;
-			set { myAsigmentsOnly = value; Changed(); }
-		}
-
-		public bool StartWithWindows {
+		public bool StartWithWindows
+		{
 			get => startWithWindows;
 			set { startWithWindows = value; Changed(); }
+		}
+
+		public MenuSettingsDTO Menu {
+			get => menu;
+			set { menu = value; Changed(); }
+		}
+		public DevOpsSettingsDTO DevOps {
+			get => devOps;
+			set { devOps = value; Changed(); } 
 		}
 	}
 }
