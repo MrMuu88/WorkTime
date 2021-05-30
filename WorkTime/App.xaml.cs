@@ -25,6 +25,7 @@ namespace WorkTime
 			base.OnStartup(e);
 
 			IoCContainer = WorkTime.Startup.ConfigureServices();
+			IoCContainer.Resolve<ISettingManager>().Load();
 
 			Messenger = IoCContainer.Resolve<IMessenger>();
 

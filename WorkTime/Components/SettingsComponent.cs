@@ -57,7 +57,7 @@ namespace WorkTime.Components
 			catch
 			{
 			}
-
+			Messenger.PublishAsync(new SettingsChangedMessage());
 			return Settings;
 		}
 
