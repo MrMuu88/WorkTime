@@ -14,7 +14,6 @@ namespace WorkTime.ViewModels
 		private ISettingManager SettingManager { get; }
 		private IMapper Mapper { get; }
 
-		public Command CmdLoad { get; set; } 
 		public Command<Window> CmdSave { get; set; }
 		public Command<Window> CmdCancel { get; set; }
 
@@ -33,17 +32,9 @@ namespace WorkTime.ViewModels
 		{
 			SettingManager = settingManager;
 			Mapper = mapper;
-			CmdLoad = new Command(Load);
+			AppSettings = Mapper.Map<AppSettingsDTO>(settingManager.Settings);
 			CmdSave = new Command<Window>(Save);
 			CmdCancel = new Command<Window>(Cancel);
-		}
-
-
-
-		public void Load() {
-			Console.WriteLine("Load command called");
-			var appSettingsModel = SettingManager.Load();
-			AppSettings =  Mapper.Map<AppSettingsDTO>(appSettingsModel);
 		}
 
 		public void Save(Window window) {

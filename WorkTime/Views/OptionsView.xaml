@@ -9,12 +9,6 @@
         mc:Ignorable="d"
         Title="OptionsView" Name="OptionsWindow" MinHeight="250" Height="200" MinWidth="300" Width="350"
 		d:DataContext="{d:DesignInstance Type=vms:OptionsViewModel, IsDesignTimeCreatable=True}">
-	<behaviours:Interaction.Triggers>
-		<behaviours:EventTrigger EventName="Loaded">
-			<behaviours:InvokeCommandAction Command="{Binding CmdLoad}"/>
-		</behaviours:EventTrigger>
-	</behaviours:Interaction.Triggers>
-
 
 	<Grid VerticalAlignment="Stretch">
 		<Grid.ColumnDefinitions>
