@@ -9,11 +9,7 @@ namespace WorkTime.Mapping
 	{
 		public MappingProfile()
 		{
-			CreateMap<WorkDay, WorkDayDTO>().ReverseMap();
-			CreateMap<TimeFrame, TimeFrameDTO>().ReverseMap();
-
 			CreateMap<AppSettings, AppsettingsDTO>().ReverseMap();
-			CreateMap<TimeTrackingSettings, TimeTrackingSettingsDTO>().ReverseMap();
 		}
 	}
 }
