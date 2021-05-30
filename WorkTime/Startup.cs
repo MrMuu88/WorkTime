@@ -14,7 +14,6 @@ namespace WorkTime
 			builder.RegisterType<SettingsComponent>().As<ISettingManager>().SingleInstance();
 			builder.RegisterType<NotifyIconComponent>().AsSelf().SingleInstance();
 
-			builder.RegisterType<ReportView>().AsSelf().InstancePerDependency();
 			builder.RegisterType<OptionsView>().AsSelf().InstancePerDependency();
 
 			builder.RegisterType<ReportsViewModel>().AsSelf().InstancePerDependency();

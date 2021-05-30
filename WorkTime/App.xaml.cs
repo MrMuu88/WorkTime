@@ -12,7 +12,7 @@ namespace WorkTime
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
-	public partial class App : Application, ISubscribe<ReportPageRequestMessage>,ISubscribe<OptionsPageRequestMessage>,ISubscribe<ExitRequestMessage>
+	public partial class App : Application, ISubscribe<OptionsPageRequestMessage>,ISubscribe<ExitRequestMessage>
 	{
 		private static ILog log = LogManager.GetLogger(nameof(App));
 
@@ -28,7 +28,6 @@ namespace WorkTime
 
 			Messenger = IoCContainer.Resolve<IMessenger>();
 
-			Messenger.Subscribe<ReportPageRequestMessage>(this);
 			Messenger.Subscribe<OptionsPageRequestMessage>(this);
 			Messenger.Subscribe<ExitRequestMessage>(this);
 
@@ -41,18 +40,6 @@ namespace WorkTime
 			base.OnExit(e);
 		}
 
-		public Task OnMessage(ReportPageRequestMessage message) {
-			return Task.Factory.StartNew(() =>{
-				log.Info("Report page requested");
-
-				//a Dsipatcher is needed to manipulate GUI stuff from a Task, otherwise STA exception
-				//https://stackoverflow.com/questions/37648693/wpf-trying-to-open-a-new-window-in-a-task-but-receive-a-the-calling-thread-mu
-
-				Current.Dispatcher.Invoke(() => { 
-					IoCContainer.Resolve<ReportView>().Show();
-				});
-			});
-		}
 
 		public Task OnMessage(OptionsPageRequestMessage message)
 		{

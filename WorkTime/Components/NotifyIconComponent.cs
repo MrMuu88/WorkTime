@@ -10,7 +10,6 @@ namespace WorkTime.Components
 		public IMessenger Messenger { get; }
 
 		private static readonly Dictionary<string, dynamic> MenuComposition = new Dictionary<string, dynamic> {
-			{ "Show report",new ReportPageRequestMessage() },
 			{ "Options",new OptionsPageRequestMessage() },
 			{ "Exit",new ExitRequestMessage() },
 		};
