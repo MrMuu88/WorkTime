@@ -4,7 +4,7 @@ namespace WorkTime.ViewModels
 {
 	public class OptionsViewModel : ViewModelBase
 	{
-		private AppsettingsDTO appsettings;
+		private AppsettingsDTO appsettings = new AppsettingsDTO();
 
 		public AppsettingsDTO Appsettings
 		{

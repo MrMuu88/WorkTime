@@ -2,9 +2,9 @@
 {
 	public class AppsettingsDTO : ViewModelBase
 	{
-		private bool startWithWindows;
-		private MenuSettingsDTO menu;
-		private DevOpsSettingsDTO devOps;
+		private bool startWithWindows = true;
+		private MenuSettingsDTO menu = new MenuSettingsDTO();
+		private DevOpsSettingsDTO devOps = new DevOpsSettingsDTO();
 
 		public bool StartWithWindows
 		{

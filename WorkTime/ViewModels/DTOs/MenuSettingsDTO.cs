@@ -4,7 +4,7 @@ namespace WorkTime.ViewModels.DTOs
 {
 	public class MenuSettingsDTO : ViewModelBase { 
 		private WorkItemType startMenuAt;
-		private bool myAsigmentsOnly;
+		private bool myAsigmentsOnly = true;
 
 		public WorkItemType StartMenuAt {
 			get => startMenuAt;

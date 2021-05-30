@@ -15,7 +15,6 @@ namespace WorkTime
 			builder.RegisterType<NotifyIconComponent>().AsSelf().SingleInstance();
 
 			builder.RegisterType<OptionsView>().AsSelf().InstancePerDependency();
-
 			builder.RegisterType<OptionsViewModel>().AsSelf().InstancePerDependency();
 
 			return builder.Build();
