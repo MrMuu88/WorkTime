@@ -5,13 +5,11 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkTime", "WorkTime\WorkTime.csproj", "{60F98C2F-A092-40D2-8429-447CFC316FDB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTime.Database", "WorkTime.Database\WorkTime.Database.csproj", "{163078C6-B3E8-471B-B951-FDAF59CFC1CD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkTime.Tests", "WorkTime.Tests\WorkTime.Tests.csproj", "{98366539-61B0-4FFB-9F21-975A9082BD3E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTime.Core", "WorkTime.Core\WorkTime.Core.csproj", "{D32B581A-A50F-4E7B-A3D3-C80D926B6996}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkTime.Azure", "WorkTime.AzureClient\WorkTime.Azure.csproj", "{A2603758-CD8E-44E2-A9C2-342B780230A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTime.Azure", "WorkTime.AzureClient\WorkTime.Azure.csproj", "{A2603758-CD8E-44E2-A9C2-342B780230A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{60F98C2F-A092-40D2-8429-447CFC316FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60F98C2F-A092-40D2-8429-447CFC316FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60F98C2F-A092-40D2-8429-447CFC316FDB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{163078C6-B3E8-471B-B951-FDAF59CFC1CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{163078C6-B3E8-471B-B951-FDAF59CFC1CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{163078C6-B3E8-471B-B951-FDAF59CFC1CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{163078C6-B3E8-471B-B951-FDAF59CFC1CD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{98366539-61B0-4FFB-9F21-975A9082BD3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{98366539-61B0-4FFB-9F21-975A9082BD3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98366539-61B0-4FFB-9F21-975A9082BD3E}.Release|Any CPU.ActiveCfg = Release|Any CPU

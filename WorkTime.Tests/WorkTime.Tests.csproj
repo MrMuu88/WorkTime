@@ -112,10 +112,6 @@
       <Project>{d32b581a-a50f-4e7b-a3d3-c80d926b6996}</Project>
       <Name>WorkTime.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WorkTime.Database\WorkTime.Database.csproj">
-      <Project>{163078c6-b3e8-471b-b951-fdaf59cfc1cd}</Project>
-      <Name>WorkTime.Database</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WorkTime\WorkTime.csproj">
       <Project>{60f98c2f-a092-40d2-8429-447cfc316fdb}</Project>
       <Name>WorkTime</Name>
