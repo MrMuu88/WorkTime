@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkTime.Tests", "WorkTime.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTime.Core", "WorkTime.Core\WorkTime.Core.csproj", "{D32B581A-A50F-4E7B-A3D3-C80D926B6996}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTime.Azure", "WorkTime.AzureClient\WorkTime.Azure.csproj", "{A2603758-CD8E-44E2-A9C2-342B780230A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkTime.AzureClient", "WorkTime.AzureClient\WorkTime.AzureClient.csproj", "{A2603758-CD8E-44E2-A9C2-342B780230A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

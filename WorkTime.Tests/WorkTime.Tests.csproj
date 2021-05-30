@@ -109,9 +109,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WorkTime.AzureClient\WorkTime.Azure.csproj">
+    <ProjectReference Include="..\WorkTime.AzureClient\WorkTime.AzureClient.csproj">
       <Project>{a2603758-cd8e-44e2-a9c2-342b780230a1}</Project>
-      <Name>WorkTime.Azure</Name>
+      <Name>WorkTime.AzureClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\WorkTime.Core\WorkTime.Core.csproj">
       <Project>{d32b581a-a50f-4e7b-a3d3-c80d926b6996}</Project>
