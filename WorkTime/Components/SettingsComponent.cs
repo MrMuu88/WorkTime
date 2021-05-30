@@ -19,7 +19,7 @@ namespace WorkTime.Components
 			Load();
 		}
 
-		public void Load()
+		public AppSettings Load()
 		{
 			try
 			{
@@ -37,10 +37,14 @@ namespace WorkTime.Components
 			}
 			catch
 			{
+				//Todo: Add logging
+				Settings = new AppSettings();
 			}
+			return Settings;
+
 		}
 
-		public void Save()
+		public AppSettings Save()
 		{
 			try
 			{
@@ -50,9 +54,16 @@ namespace WorkTime.Components
 			catch
 			{
 			}
+
+			return Settings;
 		}
 
-		public void ResetToDefaults()
+		public AppSettings Save(AppSettings newsettings) {
+			Settings = newsettings;
+			return Save();
+		}
+
+		public AppSettings ResetToDefaults()
 		{
 			try
 			{
@@ -62,6 +73,7 @@ namespace WorkTime.Components
 			catch
 			{
 			}
+			return Settings;
 		}
 	}
 }

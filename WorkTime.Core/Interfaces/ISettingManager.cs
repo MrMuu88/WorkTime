@@ -6,8 +6,9 @@ namespace WorkTime.Core.Interfaces
 	{
 		AppSettings Settings { get; }
 
-		void Load();
-		void ResetToDefaults();
-		void Save();
+		AppSettings Load();
+		AppSettings ResetToDefaults();
+		AppSettings Save();
+		AppSettings Save(AppSettings);
 	}
 }
