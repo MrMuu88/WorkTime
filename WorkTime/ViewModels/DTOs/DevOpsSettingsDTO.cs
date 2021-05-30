@@ -3,7 +3,7 @@
 	public class DevOpsSettingsDTO :ViewModelBase { 
 
 		private string pesonalAccessToken;
-		public string PesonalAccessToken {
+		public string PersonalAccessToken {
 			get => pesonalAccessToken;
 			set { pesonalAccessToken = value; Changed(); }
 		}

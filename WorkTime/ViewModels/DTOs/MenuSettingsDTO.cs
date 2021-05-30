@@ -10,7 +10,7 @@ namespace WorkTime.ViewModels.DTOs
 			get => startMenuAt;
 			set { startMenuAt = value; Changed(); } 
 		}
-		public bool MyAsigmentsOnly {
+		public bool MyAssignmentsOnly {
 			get => myAsigmentsOnly;
 			set { myAsigmentsOnly = value; Changed(); }
 		}

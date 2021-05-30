@@ -8,8 +8,7 @@
 		xmlns:vms="clr-namespace:WorkTime.ViewModels"
         mc:Ignorable="d"
         Title="OptionsView" MinHeight="250" Height="200" MinWidth="300" Width="350"
-		>
-		<!--d:DataContext="{d:DesignInstance Type=vms:OptionsViewModel, IsDesignTimeCreatable=True}"-->
+		d:DataContext="{d:DesignInstance Type=vms:OptionsViewModel, IsDesignTimeCreatable=True}">
 	<behaviours:Interaction.Triggers>
 		<behaviours:EventTrigger EventName="Loaded">
 			<behaviours:InvokeCommandAction Command="{Binding CmdLoad}"/>
@@ -33,7 +32,7 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<Label Grid.Row="1" Grid.Column="0">Personal Access Token:</Label>
-		<TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding AppSettings.DevOps.PesonalAccessToken}"/>
+		<TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding AppSettings.DevOps.PersonalAccessToken}"/>
 
 		<Label Grid.Row="2" VerticalAlignment="Center">Start menu at:</Label>
 		<ComboBox Grid.Row="2" Grid.Column="1" Margin="5">
@@ -44,7 +43,7 @@
 
 
 		<Label Grid.Row="3">Show My assigments only</Label>
-		<CheckBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding AppSettings.Menu.MyAsigmentsOnly}"/>
+		<CheckBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding AppSettings.Menu.MyAssignmentsOnly}"/>
 
 		<Label Grid.Row="4">Start program with Windows:</Label>
 		<CheckBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding AppSettings.StartWithWindows}"/>
