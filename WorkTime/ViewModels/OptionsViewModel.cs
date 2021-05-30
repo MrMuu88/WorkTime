@@ -21,6 +21,10 @@ namespace WorkTime.ViewModels
 			get => appSettings; set { appSettings = value; Changed(); }
 		}
 
+		public OptionsViewModel()
+		{
+
+		}
 
 		public OptionsViewModel(ISettingManager settingManager, IMapper mapper)
 		{
@@ -41,8 +45,8 @@ namespace WorkTime.ViewModels
 
 		public void Save() {
 			Console.WriteLine("Save Command Called");
-			//var appSettingsModel = Mapper.Map<AppSettings>(AppSettings);
-			//SettingManager.Save(appSettingsModel);
+			var appSettingsModel = Mapper.Map<AppSettings>(AppSettings);
+			SettingManager.Save(appSettingsModel);
 		}
 
 		public void Cancel() {
