@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace WorkTime.ViewModels
+namespace WorkTime.Helpers
 {
 	public class Command : ICommand
 	{
@@ -14,7 +14,7 @@ namespace WorkTime.ViewModels
 		{
 			Action = action;
 		}
-		public Command(Action action,Func<bool> predicatecanExecute):this(action)
+		public Command(Action action, Func<bool> predicatecanExecute) : this(action)
 		{
 			PredicatecanExecute = predicatecanExecute;
 		}

@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:WorkTime.Views"
 		xmlns:vms="clr-namespace:WorkTime.ViewModels"
         mc:Ignorable="d"
-        Title="OptionsView" MinHeight="250" Height="200" MinWidth="300" Width="350"
+        Title="OptionsView" Name="OptionsWindow" MinHeight="250" Height="200" MinWidth="300" Width="350"
 		d:DataContext="{d:DesignInstance Type=vms:OptionsViewModel, IsDesignTimeCreatable=True}">
 	<behaviours:Interaction.Triggers>
 		<behaviours:EventTrigger EventName="Loaded">
@@ -49,8 +49,8 @@
 		<CheckBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding AppSettings.StartWithWindows}"/>
 
 		<StackPanel Grid.Row="100" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5">
-			<Button Margin="5px" Width="50px" Command="{Binding CmdSave}">Ok</Button>
-			<Button Margin="5px" Width="50px" Command="{Binding CmdCancel}">Cancel</Button>
+			<Button Margin="5px" Width="50px" Command="{Binding CmdSave}" CommandParameter="{Binding ElementName=OptionsWindow}">Ok</Button>
+			<Button Margin="5px" Width="50px" Command="{Binding CmdCancel}" CommandParameter="{Binding ElementName=OptionsWindow}">Cancel</Button>
 		</StackPanel>
 	</Grid>
 

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using System;
+using System.Windows;
 using WorkTime.Core.Interfaces;
 using WorkTime.Core.Models.Settings;
+using WorkTime.Helpers;
 using WorkTime.ViewModels.DTOs;
 
 namespace WorkTime.ViewModels
@@ -13,8 +15,9 @@ namespace WorkTime.ViewModels
 		private IMapper Mapper { get; }
 
 		public Command CmdLoad { get; set; } 
-		public Command CmdSave { get; set; }
-		public Command CmdCancel { get; set; }
+		public Command<Window> CmdSave { get; set; }
+		public Command<Window> CmdCancel { get; set; }
+
 
 		public AppSettingsDTO AppSettings
 		{
@@ -31,8 +34,8 @@ namespace WorkTime.ViewModels
 			SettingManager = settingManager;
 			Mapper = mapper;
 			CmdLoad = new Command(Load);
-			CmdSave = new Command(Save);
-			CmdCancel = new Command(Cancel);
+			CmdSave = new Command<Window>(Save);
+			CmdCancel = new Command<Window>(Cancel);
 		}
 
 
@@ -43,14 +46,16 @@ namespace WorkTime.ViewModels
 			AppSettings =  Mapper.Map<AppSettingsDTO>(appSettingsModel);
 		}
 
-		public void Save() {
+		public void Save(Window window) {
 			Console.WriteLine("Save Command Called");
 			var appSettingsModel = Mapper.Map<AppSettings>(AppSettings);
 			SettingManager.Save(appSettingsModel);
+			window.Close();
 		}
 
-		public void Cancel() {
+		public void Cancel(Window window) {
 			Console.WriteLine("Cancel Command Called");
+			window.Close();
 		}
 	}
 }

@@ -162,10 +162,11 @@
     </ApplicationDefinition>
     <Compile Include="Components\SettingsComponent.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
-    <Compile Include="ViewModels\Command.cs" />
+    <Compile Include="Helpers\Command.cs" />
     <Compile Include="ViewModels\DTOs\AppSettingsDTO.cs" />
     <Compile Include="ViewModels\DTOs\DevOpsSettingsDTO.cs" />
     <Compile Include="ViewModels\DTOs\MenuSettingsDTO.cs" />
+    <Compile Include="Helpers\GenericCommand.cs" />
     <Compile Include="ViewModels\OptionsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\OptionsView.xaml.cs">
